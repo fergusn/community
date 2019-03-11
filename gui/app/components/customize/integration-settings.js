@@ -44,6 +44,18 @@ export default Component.extend(Notifier, {
 			}
 
 			this.set('trelloCreds', trello);
+
+
+			// Commento specific.
+			let commento = this.get('commento');
+
+			if (!_.isObject(commento)) {
+				commento = {
+					url: ''
+				};
+			}
+			
+			this.set('commentoSettings', commento);
 		}
 	},
 
@@ -59,6 +71,7 @@ export default Component.extend(Notifier, {
 			this.get('orgSvc').saveOrgSetting(orgId, 'jira', this.get('jiraCreds')).then(() => {
 				if (this.get('session.isGlobalAdmin')) {
 					this.get('orgSvc').saveGlobalSetting('SECTION-TRELLO', this.get('trelloCreds'));
+					this.get('orgSvc').saveGlobalSetting('commento', this.get('commentoSettings'));
 				}
 
 				this.notifySuccess('Saved');

@@ -31,12 +31,14 @@ export default Route.extend(AuthenticatedRouteMixin, {
 		if (this.get("session.isGlobalAdmin")) {
 			return RSVP.hash({
 				jira: this.get('orgService').getOrgSetting(orgId, 'jira'),
-				trello: this.get('orgService').getGlobalSetting('SECTION-TRELLO')
+				trello: this.get('orgService').getGlobalSetting('SECTION-TRELLO'),
+				commento: this.get("orgService").getGlobalSetting('commento')
 			});
 		} else {
 			return RSVP.hash({
 				jira: this.get('orgService').getOrgSetting(orgId, 'jira'),
-				trello: { appKey: '' }
+				trello: { appKey: '' },
+				commento: { url: '' }
 			});
 		}
 	},

@@ -28,6 +28,15 @@
 			</div>
 		{{/if}}
 
+		{{#if session.isGlobalAdmin}}
+			<h2>Commento</h2>
+			<p>A fast, privacy-focused commenting platform</p>
+			<div class="form-group">
+				<label for="commento-url">URL</label>
+					{{input id="commento-url" type="text" value=commentoSettings.url class="form-control"}}
+			</div>
+		{{/if}}
+
 		{{ui/ui-button color=constants.Color.Green light=true icon=constants.Icon.Integrations label=constants.Label.Save onClick=(action "onSave")}}
 	</form>
 </div>
